@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/features/date_of_the_day/views/home_page.dart';
+import 'package:weather_app/features/get_weather/views/weather_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      initialRoute: HomePage.routeName,
+      routes: {
+        HomePage.routeName: (context) => const HomePage(),
+        WeatherScreen.routeName: (context) => const WeatherScreen(),
+      },
     );
   }
 }

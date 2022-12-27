@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app/features/get_weather/views/weather_screen.dart';
 
 class HomePage extends StatefulWidget {
+  static String routeName = '/home_page';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -77,13 +80,18 @@ class _HomePageState extends State<HomePage> {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Container(
-                      height: MediaQuery.of(context).size.width * 0.6,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.width * 0.6,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(child: dates[0]),
                       ),
-                      child: Center(child: dates[0]),
                     ),
                     Positioned(
                       top: -10,
@@ -107,23 +115,33 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(child: dates[1]),
                       ),
-                      child: Center(child: dates[1]),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(child: dates[2]),
                       ),
-                      child: Center(child: dates[2]),
                     ),
                   ],
                 )
