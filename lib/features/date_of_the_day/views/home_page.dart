@@ -3,6 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/features/get_weather/views/weather_screen.dart';
 
+DateTime? today;
+DateTime? tomorrow;
+DateTime? afterTomorrow;
+
 class HomePage extends StatefulWidget {
   static String routeName = '/home_page';
 
@@ -24,6 +28,16 @@ class _HomePageState extends State<HomePage> {
 
     for (int i = 0; i < 3; i++) {
       final date = _currentDate.add(Duration(days: i));
+      if (i == 0) {
+        today = date;
+      } else if (i == 1) {
+        tomorrow = date;
+      } else if (i == 2) {
+        afterTomorrow = date;
+      }
+      print('today: $today');
+      print('tomorrow: $tomorrow');
+      print('afterTomorrow: $afterTomorrow');
       dates.add(
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
