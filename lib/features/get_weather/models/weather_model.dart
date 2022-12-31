@@ -1,10 +1,26 @@
+class ListDaysWeather {
+  final List<WeatherModel> list;
+
+  ListDaysWeather({required this.list});
+
+  factory ListDaysWeather.fromJson(dynamic data) {
+    List<WeatherModel> list = <WeatherModel>[];
+    if (data['list'] != null) {
+      (data['list'] as List).forEach((element) {
+        list.add(WeatherModel.fromJson(element));
+      });
+    }
+    return ListDaysWeather(list: list);
+  }
+}
+
 class WeatherModel {
   final String weather;
-  final double temp;
-  final double windSpeed;
+  final String temp;
+  final String windSpeed;
   final int humidity;
   final String dateTime;
-  final String dt;
+  final int dt;
 
   WeatherModel({
     required this.weather,
@@ -17,12 +33,12 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(dynamic data) {
     return WeatherModel(
-      weather: data['list'][0]['weather'][0]['main'],
-      temp: data['list'][0]['main']['temp'],
-      windSpeed: data['list'][0]['wind']['speed'],
-      humidity: data['list'][0]['main']['humidity'],
-      dateTime: data['list'][0]['dt_txt'],
-      dt: data['list'][0]['dt'],
+      weather: data['weather'][0]['main'],
+      temp: data['main']['temp'].toString(),
+      windSpeed: data['wind']['speed'].toString(),
+      humidity: data['main']['humidity'],
+      dateTime: data['dt_txt'],
+      dt: data['dt'],
     );
   }
 }

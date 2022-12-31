@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (context) => const HomePage(),
-        WeatherScreen.routeName: (context) => const WeatherScreen(),
+        WeatherScreen.routeName: (context) => WeatherScreen(dateTime: DateTime.now(),),
       },
     );
   }

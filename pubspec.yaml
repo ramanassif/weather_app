@@ -34,6 +34,7 @@ dependencies:
   flutter_bloc: 7.1.0
   http: ^0.13.5
   loading_animation_widget: ^1.2.0+3
+  shared_preferences:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -3,10 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/features/get_weather/views/weather_screen.dart';
 
-DateTime? today;
-DateTime? tomorrow;
-DateTime? afterTomorrow;
-
 class HomePage extends StatefulWidget {
   static String routeName = '/home_page';
 
@@ -22,6 +18,10 @@ class _HomePageState extends State<HomePage> {
   final _dayNameFormatter = DateFormat('EEEE');
   final _monthFormatter = DateFormat('MMM');
 
+  DateTime? firstDay;
+  DateTime? secondDay;
+  DateTime? thirdDay;
+
   @override
   Widget build(BuildContext context) {
     final dates = <Widget>[];
@@ -29,15 +29,15 @@ class _HomePageState extends State<HomePage> {
     for (int i = 0; i < 3; i++) {
       final date = _currentDate.add(Duration(days: i));
       if (i == 0) {
-        today = date;
+        firstDay = date;
       } else if (i == 1) {
-        tomorrow = date;
+        secondDay = date;
       } else if (i == 2) {
-        afterTomorrow = date;
+        thirdDay = date;
       }
-      print('today: $today');
-      print('tomorrow: $tomorrow');
-      print('afterTomorrow: $afterTomorrow');
+      print('today: $firstDay');
+      print('tomorrow: $secondDay');
+      print('afterTomorrow: $thirdDay');
       dates.add(
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +96,13 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                        //Navigator.pushNamed(context, WeatherScreen.routeName);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WeatherScreen(
+                                      dateTime: firstDay!,
+                                    )));
                       },
                       child: Container(
                         height: MediaQuery.of(context).size.width * 0.6,
@@ -131,7 +137,13 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                        //Navigator.pushNamed(context, WeatherScreen.routeName);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WeatherScreen(
+                                  dateTime: secondDay!,
+                                )));
                       },
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.3,
@@ -145,7 +157,13 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, WeatherScreen.routeName);
+                        //Navigator.pushNamed(context, WeatherScreen.routeName);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WeatherScreen(
+                                  dateTime: thirdDay!,
+                                )));
                       },
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.3,

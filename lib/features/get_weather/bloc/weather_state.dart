@@ -8,7 +8,7 @@ class WeatherLoading extends WeatherState {}
 
 class WeatherSuccess extends WeatherState {
   WeatherModel weatherModel;
-
+  //ListDaysWeather listDaysWeather;
   WeatherSuccess({required this.weatherModel});
 }
 

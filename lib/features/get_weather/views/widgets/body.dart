@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/core/basics_widgets/error_message.dart';
 import 'package:weather_app/core/basics_widgets/generic_loader.dart';
+import 'package:weather_app/core/storage_services/storage_services.dart';
 import 'package:weather_app/features/get_weather/bloc/weather_bloc.dart';
 import 'package:weather_app/features/get_weather/models/weather_model.dart';
 
@@ -15,7 +18,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   WeatherModel? weatherModel;
-
+  ListDaysWeather? listDaysWeather;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherBloc, WeatherState>(
@@ -25,6 +28,8 @@ class _BodyState extends State<Body> {
             child: GenericLoader(),
           );
         } else if (state is WeatherSuccess) {
+          //listDaysWeather = state.listDaysWeather;
+          //jsonEncode({"list":[1]})
           weatherModel = state.weatherModel;
           print(weatherModel!.dateTime);
           return Stack(
@@ -105,8 +110,7 @@ class _BodyState extends State<Body> {
                           children: [
                             Expanded(
                               child: Text(
-                                '${((weatherModel!.temp - 273.15).round())
-                                    .toString()}\u2103',
+                                '${((double.parse(weatherModel!.temp) - 273.15).round()).toString()}\u2103',
                                 style: GoogleFonts.abel(
                                   color: Colors.white,
                                   fontSize:
