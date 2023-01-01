@@ -7,8 +7,6 @@ class WeatherServices {
     Map<String, dynamic> data =
         await ApiServices(baseUrl: weatherUrl).getFromApi();
 
-    // WeatherModel weatherModel = WeatherModel.fromJson(data);
-    // return weatherModel;
     ListDaysWeather listDaysWeather = ListDaysWeather.fromJson(data);
     return listDaysWeather;
   }

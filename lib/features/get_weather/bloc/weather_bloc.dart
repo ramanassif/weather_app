@@ -22,7 +22,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       try {
         dateTime = event.dt;
         forDate = formattedDate.format(dateTime);
-        //var weatherModel = await event.weatherServices.getWeather();
         ListDaysWeather listDaysWeather =
             await event.weatherServices.getWeather();
         var listModel = listDaysWeather.list

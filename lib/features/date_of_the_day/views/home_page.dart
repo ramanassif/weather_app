@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app/features/get_weather/views/weather_screen.dart';
+import 'package:weather_app/features/date_of_the_day/views/widgets/body.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = '/home_page';
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               _dayNameFormatter.format(date),
               style: GoogleFonts.abel(
                 color: Colors.white,
-                fontSize: 28,
+                fontSize: 26,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
               _monthFormatter.format(date),
               style: GoogleFonts.abel(
                 color: Colors.white,
-                fontSize: 40,
+                fontSize: 26,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -76,111 +76,11 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Weather App'),
         backgroundColor: Colors.black,
       ),
-      body: Stack(
-        children: [
-          SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Image.asset(
-                'assets/images/city_background.jpg',
-                fit: BoxFit.cover,
-                filterQuality: FilterQuality.low,
-              )),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        //Navigator.pushNamed(context, WeatherScreen.routeName);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WeatherScreen(
-                                      dateTime: firstDay!,
-                                    )));
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.width * 0.6,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Center(child: dates[0]),
-                      ),
-                    ),
-                    Positioned(
-                      top: -10,
-                      child: Container(
-                        height: 40,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Today',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        //Navigator.pushNamed(context, WeatherScreen.routeName);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WeatherScreen(
-                                  dateTime: secondDay!,
-                                )));
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Center(child: dates[1]),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        //Navigator.pushNamed(context, WeatherScreen.routeName);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WeatherScreen(
-                                  dateTime: thirdDay!,
-                                )));
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Center(child: dates[2]),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+      body: Body(
+        firstDay: firstDay!,
+        secondDay: secondDay!,
+        thirdDay: thirdDay!,
+        dates: dates,
       ),
     );
   }
