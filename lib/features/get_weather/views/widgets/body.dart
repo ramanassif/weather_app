@@ -56,47 +56,25 @@ class _BodyState extends State<Body> {
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.3,
-                                      child: Text(
-                                        weatherModel!.weather.toString(),
-                                        style: GoogleFonts.abel(
-                                            color: Colors.white,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                10),
-                                      ),
+                                      child: weatherStatus(
+                                          weather: weatherModel!.weather,
+                                          heightValue: 10),
                                     ),
                                     Positioned(
                                       top: MediaQuery.of(context).size.height *
                                           0.15,
                                       left: MediaQuery.of(context).size.width *
                                           0.35,
-                                      child: SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.3,
-                                        child: weatherModel!.weather == 'Clear'
-                                            ? Image.asset(
-                                                'assets/images/sun.png')
-                                            : weatherModel!.weather == 'Clouds'
-                                                ? Image.asset(
-                                                    'assets/images/cloud_computing.png')
-                                                : Image.asset(
-                                                    'assets/images/cloud_computing.png'),
-                                      ),
+                                      child: weatherImage(
+                                          weatherStatus: weatherModel!.weather,
+                                          heightValue: 0.3),
                                     ),
                                     Positioned(
                                       top: MediaQuery.of(context).size.height *
                                           0.55,
                                       left: MediaQuery.of(context).size.width *
                                           0.35,
-                                      child: SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.2,
-                                        child: Image.asset(
-                                            'assets/images/shadow.png'),
-                                      ),
+                                      child: shadowImage(heightValue: 0.2),
                                     ),
                                   ],
                                 ),
@@ -111,98 +89,34 @@ class _BodyState extends State<Body> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Dubai',
-                                  style: GoogleFonts.abel(
-                                    color: Colors.white,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height / 12,
-                                  ),
-                                ),
+                                cityName(city: 'Dubai', heightValue: 12),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Expanded(
-                                      child: Text(
-                                        '${((double.parse(weatherModel!.temp) - 273.15).round()).toString()}\u2103',
-                                        style: GoogleFonts.abel(
-                                          color: Colors.white,
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                                      child: tempValue(
+                                          temp: weatherModel!.temp,
+                                          fontSizeWidth: 0.15),
                                     ),
                                     SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.02,
                                     ),
-                                    Container(
-                                      color: Colors.white,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.25,
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Wind:',
-                                              style: GoogleFonts.lato(
-                                                  color: Colors.grey,
-                                                  fontSize: 20),
-                                            ),
-                                            Text(
-                                                '${weatherModel!.windSpeed}Km/h',
-                                                style: GoogleFonts.abel(
-                                                    color: Colors.black,
-                                                    fontSize: 20)),
-                                          ],
-                                        ),
-                                      ),
+                                    windAndHumidityContainer(
+                                      widthValue: 0.25,
+                                      heightValue: 7,
+                                      title: 'Wind:',
+                                      value: '${weatherModel!.windSpeed}Km/h',
                                     ),
                                     SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.05,
                                     ),
-                                    Container(
-                                      color: Colors.white,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.25,
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'humidity:',
-                                              style: GoogleFonts.lato(
-                                                  color: Colors.grey,
-                                                  fontSize: 20),
-                                            ),
-                                            Text('${weatherModel!.humidity}%',
-                                                style: GoogleFonts.abel(
-                                                    color: Colors.black,
-                                                    fontSize: 20)),
-                                          ],
-                                        ),
-                                      ),
+                                    windAndHumidityContainer(
+                                      widthValue: 0.25,
+                                      heightValue: 7,
+                                      title: 'humidity:',
+                                      value: '${weatherModel!.humidity}%',
                                     ),
                                   ],
                                 ),
@@ -231,36 +145,17 @@ class _BodyState extends State<Body> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  weatherModel!.weather.toString(),
-                                  style: GoogleFonts.abel(
-                                      color: Colors.white,
-                                      fontSize:
-                                          MediaQuery.of(context).size.height /
-                                              6),
-                                ),
-                                Text(
-                                  '${((double.parse(weatherModel!.temp) - 273.15).round()).toString()}\u2103',
-                                  style: GoogleFonts.abel(
-                                    color: Colors.white,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                weatherStatus(
+                                    weather: weatherModel!.weather,
+                                    heightValue: 6),
+                                tempValue(
+                                    temp: weatherModel!.temp,
+                                    fontSizeWidth: 0.10),
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height / 4,
                                 ),
-                                Text(
-                                  'Dubai',
-                                  style: GoogleFonts.abel(
-                                    color: Colors.white,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height / 10,
-                                  ),
-                                ),
+                                cityName(city: 'Dubai', heightValue: 10),
                               ],
                             ),
                             Expanded(
@@ -269,23 +164,10 @@ class _BodyState extends State<Body> {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.4,
-                                    child: weatherModel!.weather == 'Clear'
-                                        ? Image.asset('assets/images/sun.png')
-                                        : weatherModel!.weather == 'Clouds'
-                                            ? Image.asset(
-                                                'assets/images/cloud_computing.png')
-                                            : Image.asset(
-                                                'assets/images/cloud_computing.png'),
-                                  ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.3,
-                                    child:
-                                        Image.asset('assets/images/shadow.png'),
-                                  ),
+                                  weatherImage(
+                                      weatherStatus: weatherModel!.weather,
+                                      heightValue: 0.4),
+                                  shadowImage(heightValue: 0.3),
                                 ],
                               ),
                             ),
@@ -293,59 +175,17 @@ class _BodyState extends State<Body> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Container(
-                                  color: Colors.white,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  height:
-                                      MediaQuery.of(context).size.height / 3,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Wind:',
-                                          style: GoogleFonts.lato(
-                                              color: Colors.grey, fontSize: 20),
-                                        ),
-                                        Text('${weatherModel!.windSpeed}Km/h',
-                                            style: GoogleFonts.abel(
-                                                color: Colors.black,
-                                                fontSize: 20)),
-                                      ],
-                                    ),
-                                  ),
+                                windAndHumidityContainer(
+                                  widthValue: 0.2,
+                                  heightValue: 3,
+                                  title: 'Wind:',
+                                  value: '${weatherModel!.windSpeed}Km/h',
                                 ),
-                                Container(
-                                  color: Colors.white,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  height:
-                                      MediaQuery.of(context).size.height / 3,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'humidity:',
-                                          style: GoogleFonts.lato(
-                                              color: Colors.grey, fontSize: 20),
-                                        ),
-                                        Text('${weatherModel!.humidity}%',
-                                            style: GoogleFonts.abel(
-                                                color: Colors.black,
-                                                fontSize: 20)),
-                                      ],
-                                    ),
-                                  ),
+                                windAndHumidityContainer(
+                                  widthValue: 0.2,
+                                  heightValue: 3,
+                                  title: 'humidity:',
+                                  value: '${weatherModel!.humidity}%',
                                 ),
                               ],
                             ),
@@ -380,6 +220,82 @@ class _BodyState extends State<Body> {
           : weather == 'Clear'
               ? Colors.orangeAccent
               : Colors.greenAccent,
+    );
+  }
+
+  Widget windAndHumidityContainer(
+      {required String title,
+      required String value,
+      required double widthValue,
+      required double heightValue}) {
+    return Container(
+      color: Colors.white,
+      width: MediaQuery.of(context).size.width * widthValue,
+      height: MediaQuery.of(context).size.height / heightValue,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.lato(color: Colors.grey, fontSize: 20),
+            ),
+            Text(value,
+                style: GoogleFonts.abel(color: Colors.black, fontSize: 20)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget cityName({required String city, required double heightValue}) {
+    return Text(
+      city,
+      style: GoogleFonts.abel(
+        color: Colors.white,
+        fontSize: MediaQuery.of(context).size.height / heightValue,
+      ),
+    );
+  }
+
+  Widget weatherStatus({required String weather, required double heightValue}) {
+    return Text(
+      weather.toString(),
+      style: GoogleFonts.abel(
+          color: Colors.white,
+          fontSize: MediaQuery.of(context).size.height / heightValue),
+    );
+  }
+
+  Widget tempValue({required String temp, required double fontSizeWidth}) {
+    return Text(
+      '${((double.parse(temp) - 273.15).round()).toString()}\u2103',
+      style: GoogleFonts.abel(
+        color: Colors.white,
+        fontSize: MediaQuery.of(context).size.width * fontSizeWidth,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget weatherImage(
+      {required String weatherStatus, required double heightValue}) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * heightValue,
+      child: weatherStatus == 'Clear'
+          ? Image.asset('assets/images/sun.png')
+          : weatherStatus == 'Clouds'
+              ? Image.asset('assets/images/cloud_computing.png')
+              : Image.asset('assets/images/cloud_computing.png'),
+    );
+  }
+
+  Widget shadowImage({required double heightValue}) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * heightValue,
+      child: Image.asset('assets/images/shadow.png'),
     );
   }
 }

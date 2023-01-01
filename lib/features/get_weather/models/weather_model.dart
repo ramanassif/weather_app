@@ -6,9 +6,9 @@ class ListDaysWeather {
   factory ListDaysWeather.fromJson(dynamic data) {
     List<WeatherModel> list = <WeatherModel>[];
     if (data['list'] != null) {
-      (data['list'] as List).forEach((element) {
+      for (var element in (data['list'] as List)) {
         list.add(WeatherModel.fromJson(element));
-      });
+      }
     }
     return ListDaysWeather(list: list);
   }

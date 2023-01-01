@@ -30,15 +30,7 @@ class _BodyState extends State<Body> {
               Expanded(
                 child: Stack(
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: Image.asset(
-                        'assets/images/city_background.jpg',
-                        fit: BoxFit.fill,
-                        filterQuality: FilterQuality.low,
-                      ),
-                    ),
+                    backgroundImage(boxFit: BoxFit.fill),
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: Column(
@@ -80,15 +72,7 @@ class _BodyState extends State<Body> {
             height: double.infinity,
             child: Stack(
               children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.asset(
-                    'assets/images/city_background.jpg',
-                    fit: BoxFit.fitWidth,
-                    filterQuality: FilterQuality.low,
-                  ),
-                ),
+                backgroundImage(boxFit: BoxFit.fitWidth),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
@@ -146,6 +130,18 @@ class _BodyState extends State<Body> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: child,
+      ),
+    );
+  }
+
+  Widget backgroundImage({required BoxFit boxFit}) {
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: Image.asset(
+        'assets/images/city_background.jpg',
+        fit: boxFit,
+        filterQuality: FilterQuality.low,
       ),
     );
   }
