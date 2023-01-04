@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ListDaysWeather {
   final List<WeatherModel> list;
 
@@ -41,4 +43,24 @@ class WeatherModel {
       dt: data['dt'],
     );
   }
+
+  static Map<String, dynamic> toMap(WeatherModel weatherModel) => {
+        'weather': weatherModel.weather,
+        'temp': weatherModel.temp,
+        'speed': weatherModel.windSpeed,
+        'humidity': weatherModel.humidity,
+        'dt_txt': weatherModel.dateTime,
+        'dt': weatherModel.dt,
+      };
+
+  static String encode(List<WeatherModel> weatherModelList) => json.encode(
+        weatherModelList
+            .map<Map<String, dynamic>>((music) => WeatherModel.toMap(music))
+            .toList(),
+      );
+
+  static List<WeatherModel> decode(String weatherModelList) =>
+      (json.decode(weatherModelList) as List<dynamic>)
+          .map<WeatherModel>((item) => WeatherModel.fromJson(item))
+          .toList();
 }
