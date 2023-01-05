@@ -55,7 +55,7 @@ class WeatherModel {
 
   static String encode(List<WeatherModel> weatherModelList) => json.encode(
         weatherModelList
-            .map<Map<String, dynamic>>((music) => WeatherModel.toMap(music))
+            .map<Map<String, dynamic>>((item) => WeatherModel.toMap(item))
             .toList(),
       );
 
