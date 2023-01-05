@@ -56,9 +56,14 @@ class _BodyState extends State<Body> {
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.3,
-                                      child: weatherStatus(
-                                          weather: weatherModel!.weather,
-                                          heightValue: 10),
+                                      child: Column(
+                                        children: [
+                                          weatherStatus(
+                                              weather: weatherModel!.weather,
+                                              heightValue: 10),
+                                          Text(weatherModel!.dateTime),
+                                        ],
+                                      ),
                                     ),
                                     Positioned(
                                       top: MediaQuery.of(context).size.height *
@@ -288,7 +293,9 @@ class _BodyState extends State<Body> {
           ? Image.asset('assets/images/sun.png')
           : weatherStatus == 'Clouds'
               ? Image.asset('assets/images/cloud_computing.png')
-              : Image.asset('assets/images/cloud_computing.png'),
+              : weatherStatus == 'Rain'
+                  ? Image.asset('assets/images/rainy.png')
+                  : Image.asset('assets/images/cloud_computing.png'),
     );
   }
 

@@ -45,13 +45,22 @@ class WeatherModel {
   }
 
   static Map<String, dynamic> toMap(WeatherModel weatherModel) => {
-        'weather': weatherModel.weather,
-        'temp': weatherModel.temp,
-        'speed': weatherModel.windSpeed,
-        'humidity': weatherModel.humidity,
-        'dt_txt': weatherModel.dateTime,
-        'dt': weatherModel.dt,
-      };
+    "dt": weatherModel.dt,
+    "main": {
+      "temp": weatherModel.temp,
+      "humidity": weatherModel.humidity,
+    },
+    "weather": [
+      {
+        "main": weatherModel.weather,
+      }
+    ],
+    "wind": {
+      "speed": weatherModel.windSpeed,
+    },
+    "dt_txt": weatherModel.dateTime
+  };
+
 
   static String encode(List<WeatherModel> weatherModelList) => json.encode(
         weatherModelList
