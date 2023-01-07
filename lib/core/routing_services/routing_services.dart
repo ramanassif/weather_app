@@ -6,6 +6,7 @@ import 'package:weather_app/features/get_weather/views/weather_screen.dart';
 class AppRoute {
   static Route? generateRoute(RouteSettings settings) {
     var data = settings.arguments as Map<String, dynamic>;
+
     switch (settings.name) {
       case homeScreen:
         return MaterialPageRoute(builder: (_) => const HomePage());
