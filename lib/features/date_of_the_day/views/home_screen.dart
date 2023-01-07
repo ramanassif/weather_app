@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app/features/date_of_the_day/views/widgets/body.dart';
+import 'package:weather_app/features/date_of_the_day/views/widgets/home_screen_body.dart';
 
 class HomePage extends StatefulWidget {
-  static String routeName = '/home_page';
 
   const HomePage({Key? key}) : super(key: key);
 

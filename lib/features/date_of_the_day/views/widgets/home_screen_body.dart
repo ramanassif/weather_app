@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/features/get_weather/views/weather_screen.dart';
+import 'package:weather_app/constants.dart';
 
 class Body extends StatefulWidget {
   final DateTime firstDay;
@@ -113,13 +113,12 @@ class _BodyState extends State<Body> {
       required DateTime dateTime}) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => WeatherScreen(
-              dateTime: dateTime,
-            ),
-          ),
+          weatherScreen,
+          arguments: {
+            'data_time': dateTime,
+          },
         );
       },
       child: Container(
