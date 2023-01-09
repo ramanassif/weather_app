@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:weather_app/features/date_of_the_day/views/widgets/date_card_item.dart';
 import 'package:weather_app/features/get_weather/models/weather_model.dart';
 
 WeatherModel firstWeather(

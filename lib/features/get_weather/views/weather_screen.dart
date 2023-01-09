@@ -22,8 +22,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
             weatherServices: WeatherServices(),
             dt: widget.mapArguments['data_time']!)),
       child: Builder(builder: (context) {
-        return const Scaffold(
-          body: Body(),
+        return const SafeArea(
+          child: Scaffold(
+            body: WeatherScreenBody(),
+          ),
         );
       }),
     );
