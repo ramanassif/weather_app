@@ -10,10 +10,11 @@ class ApiServices {
     Uri url = Uri.parse(baseUrl);
     http.Response response = await http.get(url);
 
-    if (response.statusCode == 400) {
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
+      return data;
+    } else {
       throw Exception('error');
     }
-    Map<String, dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
-    return data;
   }
 }
