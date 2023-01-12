@@ -52,8 +52,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
           yield (WeatherSuccess(weatherModel: weatherModel));
         }
       } on Exception catch (e) {
-        print(e);
-        yield (WeatherFailure());
+        yield (WeatherFailure(
+          errorMessage: e.toString(),
+        ));
       }
     }
   }

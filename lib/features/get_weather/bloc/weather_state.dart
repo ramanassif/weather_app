@@ -12,4 +12,7 @@ class WeatherSuccess extends WeatherState {
   WeatherSuccess({required this.weatherModel});
 }
 
-class WeatherFailure extends WeatherState {}
+class WeatherFailure extends WeatherState {
+  String errorMessage;
+  WeatherFailure({required this.errorMessage});
+}

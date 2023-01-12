@@ -34,8 +34,8 @@ class _WeatherScreenBodyState extends State<WeatherScreenBody> {
               ? PortraitOrientationContentWeatherScreen(weatherModel: weatherModel!,)
               : LandscapeOrientationContentWeatherScreen(weatherModel: weatherModel!,);
         } else if (state is WeatherFailure) {
-          return const ErrorMessage(
-            message: 'Something went wrong, Please try again',
+          return ErrorMessage(
+            message: state.errorMessage,
           );
         } else {
           return const Center(
