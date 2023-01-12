@@ -14,6 +14,10 @@ class ListDaysWeather {
     }
     return ListDaysWeather(list: list);
   }
+
+  static Map<String, dynamic> toJson(ListDaysWeather listDaysWeather) => {
+        "list": listDaysWeather.list,
+      };
 }
 
 class WeatherModel {
@@ -44,27 +48,26 @@ class WeatherModel {
     );
   }
 
-  static Map<String, dynamic> toMap(WeatherModel weatherModel) => {
-    "dt": weatherModel.dt,
-    "main": {
-      "temp": weatherModel.temp,
-      "humidity": weatherModel.humidity,
-    },
-    "weather": [
-      {
-        "main": weatherModel.weather,
-      }
-    ],
-    "wind": {
-      "speed": weatherModel.windSpeed,
-    },
-    "dt_txt": weatherModel.dateTime
-  };
-
+  static Map<String, dynamic> toJson(WeatherModel weatherModel) => {
+        "dt": weatherModel.dt,
+        "main": {
+          "temp": weatherModel.temp,
+          "humidity": weatherModel.humidity,
+        },
+        "weather": [
+          {
+            "main": weatherModel.weather,
+          }
+        ],
+        "wind": {
+          "speed": weatherModel.windSpeed,
+        },
+        "dt_txt": weatherModel.dateTime
+      };
 
   static String encode(List<WeatherModel> weatherModelList) => json.encode(
         weatherModelList
-            .map<Map<String, dynamic>>((item) => WeatherModel.toMap(item))
+            .map<Map<String, dynamic>>((item) => WeatherModel.toJson(item))
             .toList(),
       );
 
