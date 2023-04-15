@@ -1,16 +1,14 @@
-# weather_app
+# Weather App
 
-A new Flutter project.
+the application uses an API from OpenWeatherMap to get weather information to Dubai city of today's weather
+and after two days.
 
-## Getting Started
+API used: http://openweathermap.com/
 
-This project is a starting point for a Flutter application.
+# Screenshots:
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://github.com/ramanassif/weather_app/blob/master/mockup.png" width=1000>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## More Information:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The link to download the application: https://drive.google.com/file/d/1jbhB3hfsV3aWKVXkJL0TORjJHB31nSpm/view?usp=sharing
